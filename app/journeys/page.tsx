@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { ChevronsLeft, ChevronLeft, ChevronRight, ChevronsRight } from 'lucide-react';
 import styles from './journeys.module.css';
 
 interface Vehicle {
@@ -141,15 +142,17 @@ export default function JourneysPage() {
           onClick={goToFirstPage}
           disabled={currentPage === 1 || totalPages === 0}
           className={styles.paginationButton}
+          title="Első oldal"
         >
-          Első
+          <ChevronsLeft size={20} />
         </button>
         <button
           onClick={goToPreviousPage}
           disabled={currentPage === 1 || totalPages === 0}
           className={styles.paginationButton}
+          title="Előző oldal"
         >
-          Előző
+          <ChevronLeft size={20} />
         </button>
 
         <span className={styles.pageInfo}>
@@ -160,15 +163,17 @@ export default function JourneysPage() {
           onClick={goToNextPage}
           disabled={currentPage === totalPages || totalPages === 0}
           className={styles.paginationButton}
+          title="Következő oldal"
         >
-          Következő
+          <ChevronRight size={20} />
         </button>
         <button
           onClick={goToLastPage}
           disabled={currentPage === totalPages || totalPages === 0}
           className={styles.paginationButton}
+          title="Utolsó oldal"
         >
-          Utolsó
+          <ChevronsRight size={20} />
         </button>
       </div>
     </div>
