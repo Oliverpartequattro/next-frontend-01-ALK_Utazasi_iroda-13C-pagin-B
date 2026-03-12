@@ -48,8 +48,19 @@ export default function JourneysPage() {
         const data = await response.json();
         const numRecords = response.headers.get('number-of-records');
         
+        // Ha nem jó a header, számold meg az összes rekordt
+        let recordCount = parseInt(numRecords || '0', 10);
+        if (recordCount === 0 && Array.isArray(data) && data.length > 0) {
+          // Hívd meg az összes adatot hogy tudja a teljes számot
+          const allResponse = await fetch(`${API_BASE}/api/journeys`, {
+            cache: 'no-store'
+          });
+          const allData = await allResponse.json();
+          recordCount = Array.isArray(allData) ? allData.length : 0;
+        }
+        
         setJourneys(Array.isArray(data) ? data : []);
-        setTotalRecords(parseInt(numRecords || '0', 10));
+        setTotalRecords(recordCount);
       } catch (error) {
         console.error('Hiba az adatok letöltésekor:', error);
         setJourneys([]);
