@@ -142,7 +142,7 @@ export default function JourneysPage() {
         </button>
 
         <span className={styles.pageInfo}>
-          {totalPages === 0 ? '0 / 0' : `${currentPage} / ${totalPages}`}
+          {totalPages === 0 ? 'Nincs adat' : `${currentPage} / ${totalPages}`}
         </span>
 
         <button
